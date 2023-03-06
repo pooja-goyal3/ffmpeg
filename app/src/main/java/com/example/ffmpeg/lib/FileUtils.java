@@ -21,57 +21,40 @@ class FileUtils {
     private static final int EOF = -1;
 
     static boolean copyBinaryFromAssetsToData(Context context, String fileNameFromAssets, String outputFileName) {
-		
-		// create files directory under /data/data/package name
-		File filesDirectory = getFilesDirectory(context);
-		
-		InputStream is;
-		try {
-			is = context.getAssets().open(fileNameFromAssets);
-			// copy ffmpeg file from assets to files dir
-			final FileOutputStream os = new FileOutputStream(new File(filesDirectory, outputFileName));
-			byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
-			
-			int n;
-			while(EOF != (n = is.read(buffer))) {
-				os.write(buffer, 0, n);
-			}
+
+        // create files directory under /data/data/package name
+        File filesDirectory = getFilesDirectory(context);
+
+        InputStream is;
+        try {
+            is = context.getAssets().open(fileNameFromAssets);
+            // copy ffmpeg file from assets to files dir
+            final FileOutputStream os = new FileOutputStream(new File(filesDirectory, outputFileName));
+            byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
+
+            int n;
+            while(EOF != (n = is.read(buffer))) {
+                os.write(buffer, 0, n);
+            }
 
             Util.close(os);
             Util.close(is);
-			
-			return true;
-		} catch (IOException e) {
-			Log.e("issue in coping binary from assets to data. ", e);
-		}
-        return false;
-	}
 
-	static File getFilesDirectory(Context context) {
-		// creates files directory under data/data/package name
+            return true;
+        } catch (IOException e) {
+            Log.e("issue in coping binary from assets to data. ", e);
+        }
+        return false;
+    }
+
+    static File getFilesDirectory(Context context) {
+        // creates files directory under data/data/package name
         return context.getFilesDir();
-	}
+    }
 
     static String getFFmpeg(Context context) {
-        String file = getFilesDirectory(context).getAbsolutePath() + File.separator + FileUtils.ffmpegFileName;
-        File ffmpegFile = new File(getFilesDirectory(context).getAbsolutePath() + File.separator + FileUtils.ffmpegFileName);
-
-        try {
-            chmod(ffmpegFile, 7777);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return file;
+        return getFilesDirectory(context).getAbsolutePath() + File.separator + FileUtils.ffmpegFileName;
     }
-
-    public static int chmod(File path, int mode) throws Exception {
-        Class fileUtils = Class.forName("android.os.FileUtils");
-        Method setPermissions =
-                fileUtils.getMethod("setPermissions", String.class, int.class, int.class, int.class);
-        return (Integer) setPermissions.invoke(null, path.getAbsolutePath(), mode, -1, -1);
-    }
-
-
 
     static String getFFmpeg(Context context, Map<String,String> environmentVars) {
         String ffmpegCommand = "";
@@ -119,10 +102,5 @@ class FileUtils {
             Util.close(is);
         }
         return null;
-    }
-
-    static File getCacheDirectory(Context context) {
-        // creates files directory under data/data/package name
-        return context.getCacheDir();
     }
 }

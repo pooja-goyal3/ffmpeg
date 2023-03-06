@@ -20,7 +20,7 @@ class FFmpegLoadLibraryAsyncTask extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected Boolean doInBackground(Void... params) {
         File ffmpegFile = new File(FileUtils.getFFmpeg(context));
-        if (ffmpegFile.exists() && isDeviceFFmpegVersionOld() && !ffmpegFile.delete()) {
+        if (ffmpegFile.exists() && !ffmpegFile.delete()) {
             return false;
         }
         if (!ffmpegFile.exists()) {
