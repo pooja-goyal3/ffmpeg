@@ -7,13 +7,13 @@ import java.io.File;
 
 class FFmpegLoadLibraryAsyncTask extends AsyncTask<Void, Void, Boolean> {
 
-    private final String cpuArchNameFromAssets;
+//    private final String cpuArchNameFromAssets;
     private final FFmpegLoadBinaryResponseHandler ffmpegLoadBinaryResponseHandler;
     private final Context context;
 
-    FFmpegLoadLibraryAsyncTask(Context context, String cpuArchNameFromAssets, FFmpegLoadBinaryResponseHandler ffmpegLoadBinaryResponseHandler) {
+    FFmpegLoadLibraryAsyncTask(Context context, FFmpegLoadBinaryResponseHandler ffmpegLoadBinaryResponseHandler) {
         this.context = context;
-        this.cpuArchNameFromAssets = cpuArchNameFromAssets;
+//        this.cpuArchNameFromAssets = cpuArchNameFromAssets;
         this.ffmpegLoadBinaryResponseHandler = ffmpegLoadBinaryResponseHandler;
     }
 
@@ -25,7 +25,6 @@ class FFmpegLoadLibraryAsyncTask extends AsyncTask<Void, Void, Boolean> {
         }
         if (!ffmpegFile.exists()) {
             boolean isFileCopied = FileUtils.copyBinaryFromAssetsToData(context,
-                    cpuArchNameFromAssets + File.separator + FileUtils.ffmpegFileName,
                     FileUtils.ffmpegFileName);
 
             // make file executable

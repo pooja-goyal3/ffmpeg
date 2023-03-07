@@ -89,6 +89,7 @@ public class FfmpegActivity extends Activity implements View.OnClickListener, Pe
                     break;
                 }
 
+                cmd = "-i https://video.twimg.com/ext_tw_video/1632625449011654657/pu/pl/KiQ6AIh_7qIqfEAF.m3u8?variant_version=1&tag=12&container=fmp4 -c copy -f mpegts ";
                 Log.e("cmd",cmd);
                 String[] command = cmd.split(" ");
                 if (command.length != 0) {

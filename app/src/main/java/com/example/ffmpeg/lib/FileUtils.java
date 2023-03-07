@@ -19,21 +19,22 @@ class FileUtils {
     static final String ffmpegFileName = "ffmpeg";
     private static final int DEFAULT_BUFFER_SIZE = 1024 * 4;
     private static final int EOF = -1;
+    public static final String FFMPEG_FILE = "ffmpeg";
 
-    static boolean copyBinaryFromAssetsToData(Context context, String fileNameFromAssets, String outputFileName) {
+    static boolean copyBinaryFromAssetsToData(Context context, String outputFileName) {
 
         // create files directory under /data/data/package name
         File filesDirectory = getFilesDirectory(context);
 
         InputStream is;
         try {
-            is = context.getAssets().open(fileNameFromAssets);
+            is = context.getAssets().open(FFMPEG_FILE);
             // copy ffmpeg file from assets to files dir
             final FileOutputStream os = new FileOutputStream(new File(filesDirectory, outputFileName));
             byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
 
             int n;
-            while(EOF != (n = is.read(buffer))) {
+            while (EOF != (n = is.read(buffer))) {
                 os.write(buffer, 0, n);
             }
 
@@ -56,11 +57,11 @@ class FileUtils {
         return getFilesDirectory(context).getAbsolutePath() + File.separator + FileUtils.ffmpegFileName;
     }
 
-    static String getFFmpeg(Context context, Map<String,String> environmentVars) {
+    static String getFFmpeg(Context context, Map<String, String> environmentVars) {
         String ffmpegCommand = "";
         if (environmentVars != null) {
             for (Map.Entry<String, String> var : environmentVars.entrySet()) {
-                ffmpegCommand += var.getKey()+"="+var.getValue()+" ";
+                ffmpegCommand += var.getKey() + "=" + var.getValue() + " ";
             }
         }
         ffmpegCommand += getFFmpeg(context);
