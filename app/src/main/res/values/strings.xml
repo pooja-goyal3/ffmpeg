@@ -6,6 +6,6 @@
     <string name="device_not_supported_message">Ffmpeg is not supported on your device</string>
     <string name="empty_command_toast">You cannot execute empty command</string>
     <string name="empty_command_toast1">Please enter args</string>
-    <string name="https_video_twimg_com_ext_tw_video_1632625449011654657_pu_pl_kiq6aih_7qiqfeaf_m3u8_variant_version_1_tag_12_container_fmp4"><![CDATA[https://video.twimg.com/ext_tw_video/1632625449011654657/pu/pl/KiQ6AIh_7qIqfEAF.m3u8?variant_version=1&tag=12&container=fmp4]]></string>
+    <string name="https_video_twimg_com_ext_tw_video_1632625449011654657_pu_pl_kiq6aih_7qiqfeaf_m3u8_variant_version_1_tag_12_container_fmp4"><![CDATA[https://proxy-12.sg1.dailymotion.com/sec(uI0lmEyiuZevWtjRWMybVY-p6-bIJyndZ2GGp5B75-hi2IbV1_uExPOBkkljZPh8Q3BCgWJDKKvPxJYajGimcoFuhIeS37x0HXkmJMfxz1E)/video/985/670/516076589_mp4_h264_aac_hq_1.m3u8#cell=sg1]]></string>
 
 </resources>
